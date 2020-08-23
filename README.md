@@ -12,51 +12,59 @@
 | last-name       | string  | null: false |
 | first-name-kana | string  | null: false |
 | last-name-kana  | string  | null: false |
-| birth-year      | integer | null: false |
-| birth-month     | integer | null: false |
-| birth-day       | integer | null: false |
+| birth-year      | date    | null: false |
+| birth-month     | date    | null: false |
+| birth-day       | date    | null: false |
 
 ## association
 - has_many: exhibitions
-- has_one: payments
+- has_one : address
+- has_one : payments
 
 
 ## exhibitionsテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| item            | string     | null: false                    |
-| item-name       | string     | null: false                    |
-| describe        | text       | null: false                    |
-| category        | string     | null: false                    |
-| condition       | string     | null: false                    |
-| shippong-charge | string     | null: false                    |
-| shipping-area   | string     | null: false                    |
-| shipping-day    | string     | null: false                    |
-| price           | integer    | null: false                    |
-| users_id        | references | null: fales, foreign_key: treu |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item               | string     | null: false                    |
+| item-name          | string     | null: false                    |
+| describe           | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shippong-charge_id | integer    | null: false                    |
+| shipping-area_id   | integer    | null: false                    |
+| shipping-day_id    | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| users              | references | null: fales, foreign_key: treu |
 
 ## association
-- has_one: users
-- has_one: payments
+- belongs_to: users
+- has_one: address
+- has_one: payment
 
-
-## paymentsテーブル
+## address
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| card-number     | integer     | null: false                    |
-| card-month      | integer     | null: false                    |
-| card-year       | integer     | null: false                    |
-| secyrity-code   | integer     | null: false                    |
 | postal-code     | integer     | null: false                    |
 | prefectures     | string      | null: false                    |
 | municipalities  | string      | null: false                    |
 | building        | string      | null: false                    |
 | phone-numbe     | integer     | null: false                    |
 | exhibitions     | references  | null: fales, foreign_key: treu |
-| user_id         | references  | null: fales, foreign_key: treu |
+| users           | references  | null: fales, foreign_key: treu |
 
 ## association
-has_one: users
-has_one: exhibitions
+belongs_to: users
+belongs_to: exhibitions
+
+
+## paymentes
+
+| Column          | Type        | Options                        |
+| --------------- | ----------- | ------------------------------ |
+| users           | references  | null: false, foreign_key: treu | 
+
+## association
+- belongs_to: users
+-  
