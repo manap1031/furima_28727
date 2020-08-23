@@ -2,17 +2,17 @@
 
 ## usersテーブル
 
-| Column          | Type    | Options     |
-| --------------- | ------- | ----------- |
-| nickname        | string  | null: false |
-| email           | string  | null: false |
-| password-1      | string  | null: false |
-| password-2      | string  | null: false |
-| first-name      | string  | null: false |
-| last-name       | string  | null: false |
-| first-name-kana | string  | null: false |
-| last-name-kana  | string  | null: false |
-| birth-day       | date    | null: false |
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| nickname              | string  | null: false |
+| email                 | string  | null: false |
+| password              | string  | null: false |
+| password_confirmatio  | string  | null: false |
+| first-name            | string  | null: false |
+| last-name             | string  | null: false |
+| first-name-kana       | string  | null: false |
+| last-name-kana        | string  | null: false |
+| birth-day             | date    | null: false |
 
 ## association
 - has_many: exhibitions
