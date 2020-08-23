@@ -49,7 +49,7 @@
 | municipalities  | string      | null: false                    |
 | addres-number   | string      | mull: false                    |
 | building        | string      |                                |
-| phone-numbe     | integer     | null: false                    |
+| phone-number    | string      | null: false                    |
 | exhibitions     | references  | null: fales, foreign_key: treu |
 | users           | references  | null: fales, foreign_key: treu |
 
