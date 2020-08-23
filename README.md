@@ -12,8 +12,6 @@
 | last-name       | string  | null: false |
 | first-name-kana | string  | null: false |
 | last-name-kana  | string  | null: false |
-| birth-year      | date    | null: false |
-| birth-month     | date    | null: false |
 | birth-day       | date    | null: false |
 
 ## association
@@ -46,25 +44,16 @@
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| postal-code     | integer     | null: false                    |
+| postal-code     | string      | null: false                    |
 | prefectures     | string      | null: false                    |
 | municipalities  | string      | null: false                    |
-| building        | string      | null: false                    |
+| addres-number   | string      | mull: false                    |
+| building        | string      |                                |
 | phone-numbe     | integer     | null: false                    |
 | exhibitions     | references  | null: fales, foreign_key: treu |
 | users           | references  | null: fales, foreign_key: treu |
 
 ## association
-belongs_to: users
-belongs_to: exhibitions
+belongs_to: user
+belongs_to: exhibition
 
-
-## paymentes
-
-| Column          | Type        | Options                        |
-| --------------- | ----------- | ------------------------------ |
-| users           | references  | null: false, foreign_key: treu | 
-
-## association
-- belongs_to: users
--  
