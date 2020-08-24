@@ -33,7 +33,7 @@
 | shipping-area_id   | integer    | null: false                    |
 | shipping-day_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| users              | references | null: fales, foreign_key: treu |
+| user               | references | null: fales, foreign_key: treu |
 
 ## association
 - belongs_to: user
@@ -49,8 +49,6 @@
 | addres-number   | string      | null: false                    |
 | building        | string      |                                |
 | phone-number    | string      | null: false                    |
-| exhibitions     | references  | null: fales, foreign_key: treu |
-| users           | references  | null: fales, foreign_key: treu |
 
 ## association
 - belongs_to: purchase
