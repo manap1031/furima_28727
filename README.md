@@ -6,7 +6,7 @@
 | nickname              | string  | null: false |
 | email                 | string  | null: false |
 | password              | string  | null: false |
-| password_confirmatio  | string  | null: false |
+| password_confirmation | string  | null: false |
 | first_name            | string  | null: false |
 | last_name             | string  | null: false |
 | first_name_kana       | string  | null: false |
@@ -31,7 +31,6 @@
 | shipping_day_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
-| images_id          | references | null: false                    |
 
 ### association
 - belongs_to: user
@@ -71,7 +70,7 @@
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | user            | references  | null: false, foreign_key: true |
-| item            | references  | null: false, foreign_key: true |
+| exhibition      | references  | null: false, foreign_key: true |
 
 ### association
 - belongs_to: user
