@@ -16,8 +16,8 @@
 
 ## association
 - has_many: exhibitions
-- has_one : address
-- has_one : payments
+- has_many: purchases
+
 
 
 ## exhibitionsテーブル
@@ -36,24 +36,34 @@
 | users              | references | null: fales, foreign_key: treu |
 
 ## association
-- belongs_to: users
-- has_one: address
-- has_one: payment
+- belongs_to: user
+- has_one:purchase
 
 ## address
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | postal-code     | string      | null: false                    |
-| prefectures     | string      | null: false                    |
+| prefectures_id  | string      | null: false, freign_key: treu  |
 | municipalities  | string      | null: false                    |
-| addres-number   | string      | mull: false                    |
+| addres-number   | string      | null: false                    |
 | building        | string      |                                |
 | phone-number    | string      | null: false                    |
 | exhibitions     | references  | null: fales, foreign_key: treu |
 | users           | references  | null: fales, foreign_key: treu |
 
 ## association
-belongs_to: user
-belongs_to: exhibition
+- belongs_to: purchase
 
+
+## purchases
+
+| Column          | Type        | Options                        |
+| --------------- | ----------- | ------------------------------ |
+| user            | references  | null: false, foreign_key: treu |
+| item            | references  | null: false, foreign_key: treu |
+
+## association
+- belongs_to: user
+- belongs_to: exhibition
+- has_one: address
