@@ -1,0 +1,4 @@
+class ExhibitionsController < ApplicationController
+  
+  
+end
