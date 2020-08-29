@@ -1,4 +1,2 @@
 class ExhibitionsController < ApplicationController
-  
-  
 end
