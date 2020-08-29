@@ -20,6 +20,12 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include "Email can't be blank"
         end
 
+        it 'emailに@マークがない場合は登録ができないこと' do
+          @user.email = 'aaaddd.com'
+          @user.email.match(/@.+/)
+          @user.valid?
+        end
+
         it '重複したemailが存在する場合、登録ができないこと' do
           @user.save
           another_user = FactoryBot.build(:user)
