@@ -10,5 +10,4 @@ class Item < ApplicationRecord
   validates :shipping_area_id, presence: true
   validates :shipping_day_id, presence: true
   validates :price, presence: true
-  validates :user,presence: true
 end
