@@ -10,6 +10,6 @@ window.addEventListener('load', function(){
    KeyUpTax.innerHTML = AddTax
    Profit = Price - AddTax
    KeyUpProfit.innerHTML = Profit
-})
+  })
 })
 
