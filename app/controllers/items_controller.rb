@@ -1,9 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :create]
+  before_action :move_to_index, except: [:index, :create, :show]
 
   def index
-    @items = Item.all.order(id: 'DESC')
-    # .includes(:user).order('created DESC')
+    @items = Item.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -17,6 +16,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+  
   end
 
   private
