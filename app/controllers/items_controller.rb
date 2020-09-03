@@ -11,7 +11,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    if@item = Item.new(item_params)
+    @item = Item.new(item_params)
+    if @item.save
       redirect_to root_path
     else
       render :new
@@ -25,13 +26,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    if item.save
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :new
-    end
+   end
   end
 
   def destroy
@@ -42,6 +41,8 @@ class ItemsController < ApplicationController
     redirect_to root_path
  end
 
+  def find_item
+  end
 
   private
 
