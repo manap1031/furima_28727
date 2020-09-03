@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :create, :show]
+  before_action :move_to_index, except: [:index, :create, :show, :oder]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -19,8 +19,30 @@ class ItemsController < ApplicationController
   end
 
   def show
-  
+    @item = Item.find(params[:id])
   end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+  end
+
+  def destroy
+  end
+
+
+ def order
+  ItemOrder.create(item_id: params[:id])
+  redirect_to root_path
+end
+
+def find_item
+  @item = Item.find(params[:id])
+end
 
   private
 
