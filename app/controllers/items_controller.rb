@@ -42,8 +42,6 @@ class ItemsController < ApplicationController
     redirect_to root_path
  end
 
-  def find_item
-  end
 
   private
 
