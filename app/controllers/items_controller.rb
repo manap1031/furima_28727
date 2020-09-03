@@ -26,7 +26,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
+    if item = Item.find(params[:id])
+      item.update(item_params)
       redirect_to root_path
     else
       render :new
@@ -34,9 +35,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to root_path
+    if item = Item.find(params[:id])
+      item.destroy
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def order
