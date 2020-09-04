@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :purchases, only: :order do
     post 'order', on: :member
   end
-  resources :orders
+  resources :orders, only:[:index, :create]
 end
