@@ -2,19 +2,22 @@ class OrdersController < ApplicationController
   before_action :move_to_index
 
   def index
+    @order = Purchase.new
     @item = Item.find(params[:item_id])
     @address = Address.new
+    @purchase = UserPurchase.new
   end
     
 
     def create
       @item = Item.find(params[:item_id])
-      @address = Address.new(address_params)
+      @purchase = UserPurchase.new(address_params)
 
-      @order = Purchase.new(order_params)
-      if @order.valid?
+      # @order = Purchase.new(order_params)
+      if @purchase.valid?
         pay_item
-        @order.save
+        # @order.save
+        @purchase.save
         return redirect_to root_path
       else
         render 'index'
@@ -24,21 +27,21 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.permit(:@item_price, :token)
-  end
-
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp::Charge.create(
+      Payjp::Charge.create(
       amount: @item.price,
-      card: oder_params[:token],
+      card: address_params[:token],
       currency:'jpy'
     )
   end
 
+  # def order_params
+  #   params.permit(:@item_price, :token, :card_number, :exp_month, :exp_year, :cvc, :user_id).merge(user_id: current_user.id)
+  # end
+
   def address_params
-    params.require(:address).permit(:postal_code, :shipping_area_id, :prefectures_id, :municipalities, :addres_number, :building, :phone_number).merge(user_id: current_user.id)
+    params.require(:user_purchase).permit(:postal_code, :shipping_area_id,:municipalities, :address_number, :building, :phone_number).merge(user_id: current_user.id, token: params[:token])
   end
 
   def move_to_index

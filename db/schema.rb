@@ -37,16 +37,14 @@ ActiveRecord::Schema.define(version: 2020_09_04_075431) do
     t.string "postal_code", null: false
     t.integer "prefectures_id", null: false
     t.string "municipalities", null: false
-    t.string "addres_number", null: false
+    t.string "address_number", null: false
     t.string "building"
     t.string "phone_number", null: false
     t.integer "shipping_area_id", null: false
     t.bigint "item_id"
-    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_addresses_on_item_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,7 +91,6 @@ ActiveRecord::Schema.define(version: 2020_09_04_075431) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "items"
-  add_foreign_key "addresses", "users"
   add_foreign_key "items", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"

@@ -7,7 +7,7 @@ class Address < ApplicationRecord
   # validates  :municipalities, presence: true
   # validates :shipping_area_id, presence: true
   # with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/} do
-  # validates :addres_number, presence: true
+  # validates :address_number, presence: true
   # end
 
   # with_options presence: true, format: { with: /\A\d{11}\z/} do
