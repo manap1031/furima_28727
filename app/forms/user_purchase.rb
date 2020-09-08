@@ -5,7 +5,7 @@ class UserPurchase
 
  
   # validates  :prefectures_id, presence: true
-  validates  :municipalities, presence: true
+  validates :municipalities, presence: true
   validates :shipping_area_id, presence: true
   validates :address_number, presence: true
   with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/} do
@@ -17,11 +17,12 @@ class UserPurchase
   end
 
   validates :token, presence: true
-
+ 
   def save
 
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
-    address = Address.create(postal_code: postal_code, municipalities: municipalities, shipping_area_id: shipping_area_id, address_number: address_number, building: building, phone_number: phone_number)
+
+    Address.create(postal_code: postal_code, municipalities: municipalities, shipping_area_id: shipping_area_id, address_number: address_number, building: building, phone_number: phone_number, item_id: purchase.id)
     
   end
 end
