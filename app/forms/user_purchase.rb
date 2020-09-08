@@ -3,11 +3,11 @@ class UserPurchase
   include ActiveModel::Model
   attr_accessor :postal_code, :municipalities, :shipping_area_id, :address_number, :building, :phone_number, :token, :user_id, :item_id
 
- 
-  # validates  :prefectures_id, presence: true
   validates :municipalities, presence: true
   validates :shipping_area_id, presence: true
+  validates :shipping_area_id, numericality: { other_than: 1 }
   validates :address_number, presence: true
+
   with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/} do
   validates  :postal_code, presence: true
   end

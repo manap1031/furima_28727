@@ -6,18 +6,18 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @address = Address.new
     @purchase = UserPurchase.new
+    if @item.purchase != nil
+      return redirect_to root_path
+    end
   end
     
 
     def create
-      # binding.pry
       @item = Item.find(params[:item_id])
       @purchase = UserPurchase.new(address_params)
-
-      # @order = Purchase.new(order_params)
+      
       if @purchase.valid?
         pay_item
-        # @order.save
         @purchase.save
         return redirect_to root_path
       else
@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
       end
     end
   
-
   private
 
   def pay_item
