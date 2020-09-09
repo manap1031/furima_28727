@@ -14,11 +14,11 @@
 | birth_day             | date    | null: false |
 
 ### association
-- has_many: exhibitions
+- has_many: items
 - has_many: purchases
 
 
-## exhibitionsテーブル
+## itemsテーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
@@ -43,10 +43,10 @@
 | Column       | Type        | Options                        |
 | -------------| ------------| ------------------------------ |
 | image        | string      | null: false                    |
-| exhibition   | references  | null: false, foreign_key: true |
+| item         | references  | null: false, foreign_key: true |
 
 ### association
-- belongs_to: exhibition
+- belongs_to: items
 
 
 ## address
@@ -70,9 +70,9 @@
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | user            | references  | null: false, foreign_key: true |
-| exhibition      | references  | null: false, foreign_key: true |
+| item            | references  | null: false, foreign_key: true |
 
 ### association
 - belongs_to: user
-- belongs_to: exhibition
+- belongs_to: item
 - has_one: address
