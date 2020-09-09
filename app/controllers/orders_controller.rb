@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
     @address = Address.new
     @purchase = UserPurchase.new
     return redirect_to root_path unless @item.purchase.nil?
+    return redirect_to root_path unless current_user.id != @item.user_id
+    
   end
 
   def create
