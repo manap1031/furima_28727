@@ -5,14 +5,10 @@
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
+
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
-    <% if @item.purchase != nil %>
-      <%= image_tag @item.image, class: 'buy-item-img' %>
-       <div class='sold-out'>
-             <span>Sold Out!!</span>
-            </div>     
-        <% end %>
+      <%= image_tag @item.image, class: 'buy-item-img' %>     
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
           <%= @item.describe %>
@@ -38,8 +34,9 @@
   
      <%= form_with model: @purchase, url:  item_orders_path, method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
         <%= render 'shared/error_messages', model: @purchase %>
+
         <%# カード情報の入力 %>
-    <% if @item.purchase == nil%>
+    <% if @item.purchase == nil %>
       <div class='credit-card-form'>
         <h1 class='info-input-haedline'>
           クレジットカード情報入力
@@ -58,27 +55,30 @@
             <%= image_tag 'card-amex.gif', class: 'card-logo'%>
           </div>
         </div>
-        <div class="form-group">
-          <div class='form-text-wrap'>
-            <label class="form-text">有効期限</label>
-            <span class="indispensable">必須</span>
+
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">有効期限</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <div class='input-expiration-date-wrap'>
+              <%= f.text_area :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
+              <p>月</p>
+              <%= f.text_area :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
+              <p>年</p>
+            </div>
+           </div>
+
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">セキュリティコード</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
           </div>
-          <div class='input-expiration-date-wrap'>
-            <%= f.text_area :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
-            <p>月</p>
-            <%= f.text_area :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
-            <p>年</p>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class='form-text-wrap'>
-            <label class="form-text">セキュリティコード</label>
-            <span class="indispensable">必須</span>
-          </div>
-          <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
-        </div>
           </div>
           <%# /カード情報の入力 %>
+
           <%# 配送先の入力 %>
           <div class='shipping-address-form'>
             <h1 class='info-input-haedline'>
@@ -91,6 +91,7 @@
               </div>
               <%= f.text_field :postal_code , class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
             </div>
+
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">都道府県</label>
@@ -98,6 +99,7 @@
               </div>
               <%= f.collection_select(:shipping_area_id, ShippingArea.all, :id, :name, {}, {class:"select-box", id:"shipping_area_id"}) %>
             </div>
+
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">市区町村</label>
@@ -105,6 +107,7 @@
               </div>
               <%= f.text_field :municipalities, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
             </div>
+
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">番地</label>
@@ -112,6 +115,7 @@
               </div>
               <%= f.text_field :address_number, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
             </div>
+
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">建物名</label>
@@ -119,6 +123,7 @@
               </div>
               <%= f.text_field :building, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
             </div>
+
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">電話番号</label>
@@ -127,11 +132,12 @@
               <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
             </div>
           </div>
+          
           <div class='buy-btn'>
             <%= f.submit "購入" ,class:"buy-red-btn" %>
        <% end %>
       </div>
-    <% end %>
+   <% end %> 
   </div>
 </div>
 <%= render "shared/second-footer"%>
